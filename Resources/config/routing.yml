@@ -1,0 +1,3 @@
+ez_accordion_block_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: EzAccordionBlockBundle:Default:index }

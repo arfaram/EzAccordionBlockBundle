@@ -1,0 +1,21 @@
+ {% if contentArray|length > 0 %}
+     <div class="block-accordion-items panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+         {% for content in contentArray %}
+             <div class="panel panel-default">
+                 <div class="panel-heading" role="tab" id="heading-{{ loop.index }}">
+                     <h4 class="panel-title">
+                         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ loop.index }}" aria-expanded="false" aria-controls="collapse-{{ loop.index }}">
+                             {{ ez_content_name(content.content) }}
+                         </a>
+                     </h4>
+                 </div>
+                 <div id="collapse-{{ loop.index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ loop.index }}">
+                     <div class="panel-body">
+                         {{ ez_render_field(content.content, 'body') }}
+                     </div>
+                 </div>
+             </div>
+         {% endfor %}
+     </div>
+ {% endif %}
+

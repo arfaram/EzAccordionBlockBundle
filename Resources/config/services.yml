@@ -1,0 +1,9 @@
+services:
+    ez_accordion_block.block.accordion:
+        class: EzAccordionBlockBundle\Block\AccordionBlock
+        arguments:
+            - '@ezpublish.api.service.location'
+            - '@ezpublish.api.service.content'
+            - '@ezpublish.api.service.search'
+        tags:
+            - { name: landing_page_field_type.block_type, alias: accordion }

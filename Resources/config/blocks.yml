@@ -1,0 +1,6 @@
+blocks:
+    accordion:
+        views:
+            accordion:
+                template: EzAccordionBlockBundle:blocks:accordion.html.twig
+                name: Accordion Content Block View
