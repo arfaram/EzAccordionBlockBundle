@@ -12,8 +12,9 @@ EzAccordionBlockBundle provide a new accordion block in the landingpage in the p
 * Responsive design for every devices
 
 ## Installation
-* Clone or download the bundle in your src folder
-* Then add it to your application:
+Clone or download the bundle in your src folder
+
+Then add it to your application:
 
 ```php
 // app/AppKernel.php
@@ -27,6 +28,27 @@ EzAccordionBlockBundle provide a new accordion block in the landingpage in the p
     );
 }
 ```
+
+Create a new "accordion" ContentType within the "Content" group. ! do not change the ContentType name. 
+```
+php app/console ezpublish:cookbook:create_content_type accordion Content
+```
+
+Create assets
+```
+php app/console assets:install
+```
+
+Clear cache (production add : --env=prod)
+```
+php app/console cache:clear
+```
+
+## Usage
+1. Create a Folder in the content tree
+2. Add some "accordion" Objects 
+3. In the LandingPage add a new accordion block
+4. Select the Folder created in 1 
 
 ## Screenshots
 Inside the doc folder
