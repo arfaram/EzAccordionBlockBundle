@@ -1,5 +1,9 @@
 <?php
-/**
+
+/*
+ * This file is part of the EzAccordionBlockBundle package.
+ *
+ * (c) Ramzi Arfaoui <ramzi_arfa@hotmail.com>
  *
  */
 
@@ -19,29 +23,17 @@ use EzSystems\LandingPageFieldTypeBundle\FieldType\LandingPage\Model\BlockValue;
 
 /**
  * AccordionBlock block
- * Displays list of content from given root.
+ * Displays Accordion list from given root.
  */
 class AccordionBlock extends AbstractBlockType implements BlockType
 {
-    /**
-     * ContentType regular expression pattern matching single ContentType
-     * name or comma separated list of ContentTypes.
-     *
-     * @example article,place,blog_post
-     * @example article
-     *
-     * @var string
-     */
-    const PATTERN_CONTENT_TYPE = '/^([a-zA-Z_-]+|,[a-zA-Z_-]+)+$/i';
 
     /**
-     * ContentType ID regular expression.
-     *
-     * @example 16
+     * ParentLocationId regular expression.
      *
      * @var string
      */
-    const PATTERN_CONTENT_ID = '/[0-9]+/';
+    const PARENT_LOCATION_ID = '/[0-9]+/';
 
     /** @var LocationService */
     private $locationService;
@@ -68,7 +60,8 @@ class AccordionBlock extends AbstractBlockType implements BlockType
     }
 
     /**
-     * {@inheritdoc}
+     * @param BlockValue $blockValue
+     * @return array
      */
     public function getTemplateParameters(BlockValue $blockValue)
     {
@@ -100,7 +93,7 @@ class AccordionBlock extends AbstractBlockType implements BlockType
     }
 
     /**
-     * {@inheritdoc}
+     * @return BlockDefinition
      */
     public function createBlockDefinition()
     {
@@ -115,7 +108,7 @@ class AccordionBlock extends AbstractBlockType implements BlockType
                     'parentContentId',
                     'Parent',
                     'embed',
-                    self::PATTERN_CONTENT_ID,
+                    self::PARENT_LOCATION_ID,
                     'Choose an accordion folder'
                 ),
 
@@ -125,13 +118,12 @@ class AccordionBlock extends AbstractBlockType implements BlockType
     }
 
 
-
     /**
-     * {@inheritdoc}
+     * @param array $attributes block attributes
      */
     public function checkAttributesStructure(array $attributes)
     {
-        if (!isset($attributes['parentContentId']) || preg_match(self::PATTERN_CONTENT_ID, $attributes['parentContentId']) !== 1) {
+        if (!isset($attributes['parentContentId']) || preg_match(self::PARENT_LOCATION_ID, $attributes['parentContentId']) !== 1) {
             throw new InvalidBlockAttributeException('Parent container', 'parentContentId', 'Parent ContentId must be defined.');
         }
 
